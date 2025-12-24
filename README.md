@@ -20,4 +20,4 @@ Disponibles a la venta con entrega en **CDMX** o por envío.
 
 ## 📧 Contacto
 
-Para más información sobre el catálogo y compras, contáctanos.
+Para más información sobre el catálogo y compras, [contáctanos](https://www.instagram.com/grabacioneseviternas/)
