@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -7,10 +6,10 @@
   <title>Grabaciones Eviternas — Catálogo</title>
   <style>
     :root{
-      --bg:#d3c9b8;      /* beige similar al fondo de la imagen */
-      --ink:#111;        /* texto principal */
-      --accent:#b08a3a;  /* dorado */
-      --card:#f4efe6;    /* tarjetas */
+      --bg:#d3c9b8;
+      --ink:#111;
+      --accent:#b08a3a;
+      --card:#f4efe6;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.5}
@@ -35,13 +34,60 @@
     }
     .item{
       background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:16px;
-      padding:1rem;box-shadow:0 3px 10px rgba(0,0,0,.07)
+      padding:1rem;box-shadow:0 3px 10px rgba(0,0,0,.07);display:flex;flex-direction:column;position:relative;
     }
-    .item .title{font-weight:700;margin-bottom:.25rem}
-    .item .meta{color:#333}
-    .item .price{margin-top:.45rem;font-weight:700;color:var(--accent)}
+    .item-image{
+      width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:.75rem;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;
+    }
+    .item-image:hover{
+      transform:scale(1.03);box-shadow:0 4px 16px rgba(0,0,0,.15)
+    }
+    .item .title{font-weight:700;margin-bottom:.25rem;font-size:1.05rem}
+    .item .meta{color:#555;font-size:.95rem}
+    .item .price{margin-top:.5rem;font-weight:700;color:var(--accent);font-size:1.1rem}
+    .item.nuevo::before{
+      content:'NUEVO';position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;padding:.25rem .55rem;border-radius:6px;font-size:.7rem;font-weight:700;z-index:1;letter-spacing:.05em;
+    }
+    
+    /* Modal */
+    .modal{
+      display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.92);z-index:1000;align-items:center;justify-content:center;padding:1rem;
+    }
+    .modal.active{display:flex}
+    .modal-content{
+      max-width:90vw;max-height:90vh;position:relative;animation:zoomIn .3s ease;
+    }
+    .modal-content img{
+      max-width:100%;max-height:90vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.5);
+    }
+    .modal-close{
+      position:absolute;top:-40px;right:0;background:#fff;color:#111;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.5rem;line-height:1;transition:background .2s;font-weight:300;
+    }
+    .modal-close:hover{background:#f0f0f0}
+    .modal-nav{
+      position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1.5rem;transition:background .2s;font-weight:300;
+    }
+    .modal-nav:hover{background:#fff}
+    .modal-nav.prev{left:-60px}
+    .modal-nav.next{right:-60px}
+    .modal-nav:disabled{opacity:.3;cursor:not-allowed}
+    @keyframes zoomIn{
+      from{transform:scale(.8);opacity:0}
+      to{transform:scale(1);opacity:1}
+    }
+    
     footer{
-      text-align:center;padding:1.25rem;color:#222;border-top:1px dashed rgba(0,0,0,.25);background:#ece6da
+      text-align:center;padding:1.5rem;color:#222;border-top:1px dashed rgba(0,0,0,.25);background:#ece6da
+    }
+    footer p{margin:.5rem 0}
+    .footer-link{
+      color:var(--accent);text-decoration:none;font-weight:600;transition:color .2s;
+    }
+    .footer-link:hover{color:var(--ink)}
+    
+    @media(max-width:768px){
+      .modal-nav{display:none}
+      .modal-close{top:10px}
     }
   </style>
 </head>
@@ -58,78 +104,229 @@
   </header>
 
   <main>
-    <h2>Ediciones y Compilaciones</h2>
-    <section class="grid" aria-label="Listado de artículos en venta">
+    <h2>Vinilos</h2>
+    <section class="grid" aria-label="Vinilos disponibles">
       <article class="item">
+        <img class="item-image" src="MERCH/01 AccidentSentimental.jpg" alt="Accident Sentimental - So Solitaire" loading="lazy">
         <div class="title">Accident Sentimental — So Solitaire</div>
-        <div class="meta">Vinilo 12”</div>
+        <div class="meta">Vinilo 12"</div>
+        <div class="price">650 MXN</div>
+      </article>
+
+      <article class="item nuevo">
+        <img class="item-image" src="MERCH/02 Automelodi.JPG" alt="Automelodi - Mirages au Futur Verre Brisé" loading="lazy">
+        <div class="title">Automelodi — Mirages au Futur Verre Brisé</div>
+        <div class="meta">Vinilo 12"</div>
         <div class="price">650 MXN</div>
       </article>
 
       <article class="item">
+        <img class="item-image" src="MERCH/03 DasDing.jpg" alt="Das Ding - Selected Archival Recordings 1979–1985" loading="lazy">
         <div class="title">Das Ding — Selected Archival Recordings 1979–1985</div>
-        <div class="meta">Vinilo 12”</div>
-        <div class="price">700 MXN</div>
+        <div class="meta">Vinilo 12"</div>
+        <div class="price">650 MXN</div>
       </article>
 
       <article class="item">
+        <img class="item-image" src="MERCH/04 FLO926.JPG" alt="FLO 926 - Dada Überall / La Bonne Heure" loading="lazy">
         <div class="title">FLO 926 — Dada Überall / La Bonne Heure</div>
-        <div class="meta">Lathe Cut 7”</div>
+        <div class="meta">Lathe Cut 7"</div>
         <div class="price">450 MXN</div>
       </article>
 
       <article class="item">
+        <img class="item-image" src="MERCH/05 MakinaGirgir.JPG" alt="MAKiNA GiRGiR - Torment (2024)" loading="lazy">
+        <div class="title">MAKiNA GiRGiR — Torment (2024)</div>
+        <div class="meta">Vinilo 12"</div>
+        <div class="price">750 MXN</div>
+      </article>
+
+      <article class="item nuevo">
+        <img class="item-image" src="MERCH/06 Potochkine.JPG" alt="Potochkine - Sang d'encre" loading="lazy">
+        <div class="title">Potochkine — Sang d'encre</div>
+        <div class="meta">Vinilo 12"</div>
+        <div class="price">650 MXN</div>
+      </article>
+
+      <article class="item">
+        <img class="item-image" src="MERCH/07 REF.JPG" alt="Ruinas para una Era Futura - Augurio / Visión" loading="lazy">
+        <div class="title">Ruinas para una Era Futura — Augurio / Visión</div>
+        <div class="meta">Lathe Cut 7"</div>
+        <div class="price">450 MXN</div>
+      </article>
+
+      <article class="item nuevo">
+        <img class="item-image" src="MERCH/08 Tilly Electronics.JPG" alt="Tilly Electronics - Days of Sorrow" loading="lazy">
+        <div class="title">Tilly Electronics — Days of Sorrow</div>
+        <div class="meta">Vinilo 7"</div>
+        <div class="price">300 MXN</div>
+      </article>
+    </section>
+
+    <h2>Cassettes</h2>
+    <section class="grid" aria-label="Cassettes disponibles">
+      <article class="item">
+        <img class="item-image" src="MERCH/09 LaMerde.PNG" alt="La Merde - Kluitenbreker" loading="lazy">
         <div class="title">La Merde — Kluitenbreker</div>
         <div class="meta">Cassette</div>
         <div class="price">250 MXN</div>
       </article>
 
       <article class="item">
-        <div class="title">Larsovitch — NORMAL’NO</div>
-        <div class="meta">Cassette</div>
-        <div class="price">$300</div>
-      </article>
-
-      <article class="item">
-        <div class="title">MAKiNA GiRGiR — Torment (2024)</div>
-        <div class="meta">Vinilo 12”</div>
-        <div class="price">750 MXN</div>
-      </article>
-
-      <article class="item">
-        <div class="title">нат.аша — 666evil</div>
+        <img class="item-image" src="MERCH/10 Larsovitch.JPG" alt="Larsovitch - NORMAL'NO" loading="lazy">
+        <div class="title">Larsovitch — NORMAL'NO</div>
         <div class="meta">Cassette</div>
         <div class="price">300 MXN</div>
       </article>
 
       <article class="item">
-        <div class="title">Ruinas para una Era Futura — Augurio / Visión</div>
-        <div class="meta">Lathe Cut 7”</div>
-        <div class="price">450 MXN</div>
+        <img class="item-image" src="MERCH/11 Hatawa.PNG" alt="нат.аша - 666evil" loading="lazy">
+        <div class="title">нат.аша — 666evil</div>
+        <div class="meta">Cassette</div>
+        <div class="price">300 MXN</div>
+      </article>
+    </section>
+
+    <h2>Compilaciones</h2>
+    <section class="grid" aria-label="Compilaciones disponibles">
+      <article class="item nuevo">
+        <img class="item-image" src="MERCH/12 Dystatik.JPG" alt="Dystatik Synth Compilation" loading="lazy">
+        <div class="title">Dystatik Synth Compilation</div>
+        <div class="meta">Cassette</div>
+        <div class="price">300 MXN</div>
+      </article>
+
+      <article class="item nuevo">
+        <img class="item-image" src="MERCH/13 Greek Synth.png" alt="Greek Synth Compilation" loading="lazy">
+        <div class="title">Greek Synth Compilation</div>
+        <div class="meta">Cassette</div>
+        <div class="price">300 MXN</div>
       </article>
 
       <article class="item">
-        <div class="title">V.A. — Tower of Light & Hearts of Stone (Compilación 1)</div>
-        <div class="meta">Cassette</div>
-        <div class="price">$300</div>
+        <img class="item-image" src="MERCH/14 TowerLight.jpg" alt="V.A. - Tower of Light & Hearts of Stone" loading="lazy">
+        <div class="title">V.A. — Tower of Light & Hearts of Stone</div>
+        <div class="meta">Cassette · Compilación 1</div>
+        <div class="price">300 MXN</div>
       </article>
 
       <article class="item">
-        <div class="title">V.A. — The Chapel of Visions (Compilación 2)</div>
-        <div class="meta">Cassette</div>
-        <div class="price">$300</div>
+        <img class="item-image" src="MERCH/15 ChapelVisions.jpg" alt="V.A. - The Chapel of Visions" loading="lazy">
+        <div class="title">V.A. — The Chapel of Visions</div>
+        <div class="meta">Cassette · Compilación 2</div>
+        <div class="price">300 MXN</div>
       </article>
 
       <article class="item">
-        <div class="title">V.A. — Songs from the Phantom Ship (Compilación 3)</div>
-        <div class="meta">Cassette</div>
-        <div class="price">$300</div>
+        <img class="item-image" src="MERCH/16 SongsPhantomShip.JPG" alt="V.A. - Songs from the Phantom Ship" loading="lazy">
+        <div class="title">V.A. — Songs from the Phantom Ship</div>
+        <div class="meta">Cassette · Compilación 3</div>
+        <div class="price">300 MXN</div>
       </article>
     </section>
   </main>
 
+  <!-- Modal para ampliar imágenes -->
+  <div class="modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Vista ampliada de imagen">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Cerrar">&times;</button>
+      <button class="modal-nav prev" id="prevImage" aria-label="Imagen anterior">&larr;</button>
+      <img id="modalImage" src="" alt="">
+      <button class="modal-nav next" id="nextImage" aria-label="Siguiente imagen">&rarr;</button>
+    </div>
+  </div>
+
   <footer>
-    AEviternAE 2025
+    <p>AEviternAE 2025</p>
+    <p>
+      <a href="https://www.instagram.com/grabacioneseviternas/" target="_blank" rel="noopener noreferrer" class="footer-link">
+        📷 Síguenos en Instagram
+      </a>
+    </p>
   </footer>
+
+  <script>
+    // Sistema de modal para imágenes
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeBtn = document.getElementById('closeModal');
+    const prevBtn = document.getElementById('prevImage');
+    const nextBtn = document.getElementById('nextImage');
+    const images = document.querySelectorAll('.item-image');
+    
+    let currentImageIndex = 0;
+    const imageArray = Array.from(images);
+
+    // Abrir modal al hacer click en imagen
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        currentImageIndex = index;
+        updateNavigationButtons();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Cerrar modal
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Navegación entre imágenes
+    function updateNavigationButtons() {
+      prevBtn.disabled = currentImageIndex === 0;
+      nextBtn.disabled = currentImageIndex === imageArray.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentImageIndex > 0) {
+        currentImageIndex--;
+        modalImg.src = imageArray[currentImageIndex].src;
+        modalImg.alt = imageArray[currentImageIndex].alt;
+        updateNavigationButtons();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentImageIndex < imageArray.length - 1) {
+        currentImageIndex++;
+        modalImg.src = imageArray[currentImageIndex].src;
+        modalImg.alt = imageArray[currentImageIndex].alt;
+        updateNavigationButtons();
+      }
+    });
+
+    // Cerrar con tecla Escape y navegar con flechas
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('active')) return;
+      
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowLeft' && currentImageIndex > 0) {
+        prevBtn.click();
+      } else if (e.key === 'ArrowRight' && currentImageIndex < imageArray.length - 1) {
+        nextBtn.click();
+      }
+    });
+
+    // Smooth scroll para navegación interna
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
