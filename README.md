@@ -1,10 +1,23 @@
 # Grabaciones Eviternas — Catálogo
 
-![Grabaciones Eviternas](GRABACIONES%20EVITERNAS.jpeg)
+<p align="center">
+  <img src="GRABACIONES%20EVITERNAS.jpeg" alt="Grabaciones Eviternas" width="500">
+</p>
 
-## Descripción
+## 📖 Descripción
 
-**Grabaciones Eviternas** es un catálogo independiente que reúne ecos y vibraciones del **darkwave**, **minimal synth** y **dark folk**.  
-Son ediciones en **vinilo** y **cassette**, piezas únicas que trascienden el tiempo.  
+**Grabaciones Eviternas** es un catálogo independiente que reúne ecos y vibraciones del **darkwave**, **minimal synth** y **dark folk**.
+
+Son ediciones en **vinilo** y **cassette**, piezas únicas que trascienden el tiempo.
+
+---
+
+## 🛒 Disponibilidad
 
 Disponibles a la venta con entrega en **CDMX** o por envío.
+
+---
+
+## 📧 Contacto
+
+Para más información sobre el catálogo y compras, contáctanos.
