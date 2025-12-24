@@ -1,7 +1,7 @@
 # Grabaciones Eviternas — Catálogo
 
 <p align="center">
-  <img src="grabacionesEviternas.jpg" alt="Grabaciones Eviternas" width="400">
+  <img src="GrabacionesEviternas_Nuevo.png" alt="Grabaciones Eviternas" width="400">
 </p>
 
 ## 📖 Descripción

@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logo SVG Animado — Grabaciones Eviternas</title>
+  <style>
+    :root{
+      --bg:#d3c9b8;
+      --ink:#111;
+      --accent:#b08a3a;
+      --card:#f4efe6;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      line-height:1.5;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    
+    .container {
+      max-width: 1100px;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin: 2rem 0 1rem;
+      color: var(--ink);
+    }
+    
+    .logo-svg {
+      width: min(520px, 90vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
+      filter: drop-shadow(0 6px 24px rgba(0,0,0,.18));
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    
+    .logo-svg:hover {
+      transform: translateY(-3px);
+      filter: drop-shadow(0 8px 32px rgba(0,0,0,.25));
+    }
+    
+    /* Animaciones CSS para SVG */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    
+    /* Aplicar animaciones */
+    #vinyl-rotating,
+    #vinyl-grooves {
+      animation: spin 8s linear infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    
+    #reel-left {
+      animation: spin 3s linear infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    
+    #reel-right {
+      animation: spin 3s linear infinite reverse;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    
+    .star-twinkle {
+      animation: twinkle 2.5s ease-in-out infinite;
+    }
+    
+    .star-twinkle:nth-child(2n) {
+      animation-delay: 0.5s;
+    }
+    
+    .star-twinkle:nth-child(3n) {
+      animation-delay: 1s;
+    }
+    
+    .circle-pulse {
+      animation: pulse 3s ease-in-out infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    
+    /* Pausar animaciones cuando se desactiven */
+    .logo-svg.paused * {
+      animation-play-state: paused !important;
+    }
+    
+    .controls {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    button {
+      padding: 0.75rem 1.5rem;
+      background: var(--ink);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    button:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+    
+    .comparison {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(0,0,0,.1);
+    }
+    
+    .comparison img {
+      width: min(520px, 90vw);
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.18);
+    }
+    
+    p {
+      color: #555;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Logo SVG Animado — Versión de Código</h1>
+    
+    <svg class="logo-svg" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
+      <!-- Estrellas decorativas izquierda -->
+      <!-- Estrella 4 puntas superior izquierda -->
+      <path d="M 160,190 L 165,200 L 160,210 L 155,200 Z M 150,200 L 160,200 L 170,200" stroke="#3a3a3a" stroke-width="3" fill="none"/>
+      
+      <!-- Círculo dorado superior izquierda -->
+      <g class="circle-pulse">
+        <circle cx="210" cy="140" r="18" fill="#a08040"/>
+        <circle cx="207" cy="137" r="4" fill="#d3c9b8" opacity="0.6"/>
+      </g>
+      
+      <!-- Estrella 4 puntas dorada izquierda -->
+      <path class="star-twinkle" d="M 140,380 L 150,400 L 140,420 L 130,400 Z M 110,400 L 140,400 L 170,400" fill="#a08040"/>
+      
+      <!-- Punto pequeño izquierda -->
+      <circle cx="140" cy="340" r="4" fill="#3a3a3a"/>
+      
+      <!-- Círculo luna superior -->
+      <circle cx="268" cy="110" r="6" fill="#3a3a3a"/>
+      
+      <!-- VINILO PRINCIPAL -->
+      <g transform="translate(400, 300)">
+        <!-- Círculo externo del vinilo -->
+        <circle cx="0" cy="0" r="180" fill="#3a3a3a"/>
+        
+        <!-- Puntos blancos en el borde (rotando) -->
+        <g id="vinyl-rotating" fill="white">
+          <circle cx="-85" cy="-155" r="5"/>
+          <circle cx="-65" cy="-165" r="4"/>
+          <circle cx="-45" cy="-172" r="4"/>
+          <circle cx="-25" cy="-176" r="3"/>
+          <circle cx="-5" cy="-179" r="4"/>
+          <circle cx="15" cy="-179" r="3"/>
+          <circle cx="35" cy="-176" r="4"/>
+          <circle cx="55" cy="-170" r="3"/>
+          <path d="M -110,-150 L -105,-155 L -100,-150 L -105,-145 Z"/>
+        </g>
+        
+        <!-- Surcos del vinilo (círculos concéntricos) -->
+        <g id="vinyl-grooves" fill="none" stroke="#d3c9b8" stroke-width="1.5">
+          <circle cx="0" cy="0" r="170"/>
+          <circle cx="0" cy="0" r="160"/>
+          <circle cx="0" cy="0" r="150"/>
+          <circle cx="0" cy="0" r="140"/>
+          <circle cx="0" cy="0" r="130"/>
+          <circle cx="0" cy="0" r="120"/>
+          <circle cx="0" cy="0" r="110"/>
+          <circle cx="0" cy="0" r="100"/>
+          <circle cx="0" cy="0" r="90"/>
+          <circle cx="0" cy="0" r="80"/>
+          <circle cx="0" cy="0" r="70"/>
+          <circle cx="0" cy="0" r="60"/>
+        </g>
+        
+        <!-- Centro del vinilo (label) -->
+        <circle cx="0" cy="0" r="50" fill="#f4efe6"/>
+        <circle cx="0" cy="0" r="45" fill="white"/>
+        
+        <!-- Agujero central y puntos -->
+        <circle cx="0" cy="0" r="8" fill="#3a3a3a"/>
+        <circle cx="-15" cy="0" r="2.5" fill="#3a3a3a"/>
+        <circle cx="15" cy="0" r="2.5" fill="#3a3a3a"/>
+        <circle cx="0" cy="-15" r="2.5" fill="#3a3a3a"/>
+        <circle cx="0" cy="15" r="2.5" fill="#3a3a3a"/>
+        
+        <!-- CASSETTE -->
+        <g transform="translate(0, 100)">
+          <!-- Cuerpo del cassette -->
+          <rect x="-65" y="-35" width="130" height="70" rx="8" fill="#d3c9b8" stroke="#3a3a3a" stroke-width="3"/>
+          
+          <!-- Ventana superior -->
+          <rect x="-55" y="-25" width="110" height="25" rx="3" fill="#f4efe6" stroke="#3a3a3a" stroke-width="2"/>
+          
+          <!-- Carretes (girando) -->
+          <g id="reel-left">
+            <circle cx="-32" cy="15" r="18" fill="white" stroke="#3a3a3a" stroke-width="2"/>
+            <circle cx="-32" cy="15" r="6" fill="#3a3a3a"/>
+          </g>
+          <g id="reel-right">
+            <circle cx="32" cy="15" r="18" fill="white" stroke="#3a3a3a" stroke-width="2"/>
+            <circle cx="32" cy="15" r="6" fill="#3a3a3a"/>
+          </g>
+          
+          <!-- Líneas en la ventana superior -->
+          <line x1="-45" y1="-18" x2="45" y2="-18" stroke="#3a3a3a" stroke-width="1.5"/>
+          <line x1="-45" y1="-10" x2="45" y2="-10" stroke="#3a3a3a" stroke-width="1.5"/>
+          <line x1="-45" y1="-2" x2="45" y2="-2" stroke="#3a3a3a" stroke-width="1.5"/>
+          
+          <!-- Rectángulo central inferior -->
+          <rect x="-15" y="5" width="30" height="20" rx="2" fill="none" stroke="#3a3a3a" stroke-width="2"/>
+          
+          <!-- Puntos decorativos inferiores -->
+          <circle cx="-50" cy="30" r="2.5" fill="#3a3a3a"/>
+          <circle cx="-42" cy="30" r="2.5" fill="#3a3a3a"/>
+          <circle cx="-34" cy="30" r="2.5" fill="#3a3a3a"/>
+          <circle cx="34" cy="30" r="2.5" fill="#3a3a3a"/>
+          <circle cx="42" cy="30" r="2.5" fill="#3a3a3a"/>
+          <circle cx="50" cy="30" r="2.5" fill="#3a3a3a"/>
+        </g>
+      </g>
+      
+      <!-- LÁPIZ (derecha del vinilo) -->
+      <g transform="translate(620, 380)">
+        <rect x="-8" y="-50" width="16" height="80" fill="#3a3a3a" transform="rotate(-25)"/>
+        <path d="M -8,-50 L 0,-65 L 8,-50 Z" fill="#3a3a3a" transform="rotate(-25)"/>
+      </g>
+      
+      <!-- Estrellas decorativas derecha -->
+      <g class="star-twinkle" transform="translate(580, 100)">
+        <path d="M 0,-25 L 5,-8 L 18,-5 L 8,5 L 10,18 L 0,10 L -10,18 L -8,5 L -18,-5 L -5,-8 Z" fill="#a08040"/>
+      </g>
+      
+      <g class="star-twinkle" transform="translate(720, 165)">
+        <path d="M 0,-20 L 6,-6 L 20,-6 L 9,2 L 14,16 L 0,8 L -14,16 L -9,2 L -20,-6 L -6,-6 Z" fill="#3a3a3a"/>
+      </g>
+      
+      <path class="star-twinkle" d="M 720,270 L 730,290 L 720,310 L 710,290 Z M 690,290 L 720,290 L 750,290" fill="#a08040"/>
+      
+      <!-- Círculo negro derecha -->
+      <g class="circle-pulse">
+        <circle cx="710" cy="430" r="16" fill="#3a3a3a"/>
+        <circle cx="708" cy="427" r="5" fill="#d3c9b8" opacity="0.5"/>
+      </g>
+      
+      <!-- Puntos decorativos varios -->
+      <circle cx="525" cy="165" r="4" fill="#3a3a3a"/>
+      <circle cx="638" cy="165" r="3" fill="#3a3a3a"/>
+      <circle cx="735" cy="500" r="4" fill="#3a3a3a"/>
+      <circle cx="525" cy="340" r="3" fill="#3a3a3a"/>
+      
+      <!-- Pequeñas estrellas adicionales -->
+      <path class="star-twinkle" d="M 615,205 L 618,210 L 623,210 L 619,213 L 620,218 L 615,215 L 610,218 L 611,213 L 607,210 L 612,210 Z" fill="#3a3a3a"/>
+      <path class="star-twinkle" d="M 645,230 L 647,233 L 650,233 L 648,235 L 649,238 L 645,236 L 641,238 L 642,235 L 640,233 L 643,233 Z" fill="#3a3a3a"/>
+      <path class="star-twinkle" d="M 665,255 L 667,258 L 670,258 L 668,260 L 669,263 L 665,261 L 661,263 L 662,260 L 660,258 L 663,258 Z" fill="#3a3a3a"/>
+      <path class="star-twinkle" d="M 678,285 L 680,288 L 683,288 L 681,290 L 682,293 L 678,291 L 674,293 L 675,290 L 673,288 L 676,288 Z" fill="#3a3a3a"/>
+      
+      <!-- LÍNEAS HORIZONTALES INFERIORES -->
+      <g stroke="#3a3a3a" stroke-width="2.5" fill="none">
+        <line x1="85" y1="490" x2="320" y2="490"/>
+        <line x1="85" y1="505" x2="320" y2="505"/>
+        <line x1="85" y1="520" x2="320" y2="520"/>
+        <line x1="85" y1="535" x2="320" y2="535"/>
+        <line x1="85" y1="550" x2="320" y2="550"/>
+        <line x1="85" y1="565" x2="320" y2="565"/>
+        <line x1="85" y1="580" x2="320" y2="580"/>
+        <line x1="85" y1="595" x2="320" y2="595"/>
+        <line x1="85" y1="610" x2="320" y2="610"/>
+        
+        <line x1="480" y1="490" x2="715" y2="490"/>
+        <line x1="480" y1="505" x2="715" y2="505"/>
+        <line x1="480" y1="520" x2="715" y2="520"/>
+        <line x1="480" y1="535" x2="715" y2="535"/>
+        <line x1="480" y1="550" x2="715" y2="550"/>
+        <line x1="480" y1="565" x2="715" y2="565"/>
+        <line x1="480" y1="580" x2="715" y2="580"/>
+        <line x1="480" y1="595" x2="715" y2="595"/>
+        <line x1="480" y1="610" x2="715" y2="610"/>
+      </g>
+      
+      <!-- Puntos decorativos inferiores -->
+      <circle cx="335" cy="620" r="3" fill="#3a3a3a"/>
+      <circle cx="465" cy="620" r="3" fill="#3a3a3a"/>
+      
+      <!-- TEXTO -->
+      <text x="400" y="670" font-family="Arial, sans-serif" font-size="56" font-weight="800" 
+            fill="#3a3a3a" text-anchor="middle" letter-spacing="2">
+        GRABACIONES EVITERNAS
+      </text>
+    </svg>
+    
+    <div class="controls">
+      <button onclick="toggleAnimation()">🎬 Activar/Pausar Animaciones</button>
+      <button onclick="window.open('index.html', '_blank')">Ver en página principal</button>
+      <button onclick="downloadSVG()">Descargar SVG</button>
+    </div>
+    
+    <p id="status" style="margin-top: 1rem; color: var(--accent); font-weight: 600;">
+      ✨ Animaciones activadas
+    </p>
+    
+    <div class="comparison">
+      <h2>Comparación</h2>
+      <p>Logo original (JPG):</p>
+      <img src="grabacionesEviternas.jpg" alt="Logo original">
+      
+      <p style="margin-top: 2rem;">✨ Ventajas del SVG:</p>
+      <ul style="text-align: left; max-width: 600px; margin: 1rem auto; color: #555;">
+        <li>📐 Escala infinitamente sin perder calidad</li>
+        <li>💾 Archivo más ligero (reduce tiempo de carga)</li>
+        <li>🎨 Se puede animar con CSS/JavaScript</li>
+        <li>🎯 Perfecto para retina/4K displays</li>
+        <li>♿ Mejor accesibilidad (texto seleccionable)</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    let animationActive = true;
+    
+    function toggleAnimation() {
+      const svg = document.querySelector('.logo-svg');
+      const status = document.getElementById('status');
+      
+      if (animationActive) {
+        svg.classList.add('paused');
+        status.textContent = '⏸️ Animaciones pausadas';
+        status.style.color = '#555';
+        animationActive = false;
+      } else {
+        svg.classList.remove('paused');
+        status.textContent = '✨ Animaciones activadas';
+        status.style.color = 'var(--accent)';
+        animationActive = true;
+      }
+    }
+    
+    function downloadSVG() {
+      const svg = document.querySelector('.logo-svg');
+      const svgData = new XMLSerializer().serializeToString(svg);
+      const blob = new Blob([svgData], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'grabaciones-eviternas-logo.svg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
